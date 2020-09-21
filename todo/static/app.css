@@ -1,0 +1,26 @@
+.to_do_list{
+  display:flex;
+  list-style: none;
+  border:solid 1px lightgray;
+  padding:15px;
+}
+
+.add_form{
+  margin-top:20px;
+  width:60vw;
+  border:solid 1px lightgray;
+  padding:10px;
+  margin-top:40px;
+}
+#total_time{
+  margin:20px 0px;
+}
+#timer{
+  font-size:80px;
+}
+#box{
+  padding:20px;
+  margin-top:40px;
+  border:1px lightgray solid}
+  
+}
