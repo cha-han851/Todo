@@ -7,6 +7,9 @@ from django.http import HttpResponse, HttpResponseRedirect
 from todo.forms import TodoForm
 
 
+
+
+
 def index(request):
       today = date.today()
       todos = Todo.objects.filter(added_date=today)
@@ -17,6 +20,7 @@ def index(request):
         'totaltime': totaltime,
         }
       return render(request, 'todo/index.html',context)
+
 def addTodo(request):
       new_todo = Todo(title=request.POST['title'],added_date = request.POST['added_date'],text=request.POST['text'],time=request.POST['time'],importance=request.POST['importance'])
       new_todo.save()
