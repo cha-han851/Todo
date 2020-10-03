@@ -3,21 +3,22 @@ from django.views import generic
 from todo.models import Todo
 from django.shortcuts import render, get_object_or_404
 from datetime import date
-from django.http import HttpResponse, HttpResponseRedirect
+from django.http import  HttpResponseRedirect
 from todo.forms import TodoForm
 
 
 
-
+# filter(added_date=today)
 
 def index(request):
       today = date.today()
-      todos = Todo.objects.filter(added_date=today)
+      todos = Todo.objects.filter(added_date=date.today())
       totaltime = sum([t.time for t in todos])
       context = {
         'todos': todos,
         'today': today,
         'totaltime': totaltime,
+
         }
       return render(request, 'todo/index.html',context)
 
@@ -52,9 +53,8 @@ def update(request, id):
         'message': 'Update article ' + str(id),
         'todo': todo,
     }
-    return HttpResponseRedirect('/todo/')
+    return HttpResponseRedirect('/todo/',context)
 
 class DetailView(generic.DetailView):
        model = Todo
 
-      

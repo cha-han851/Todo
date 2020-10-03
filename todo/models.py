@@ -15,7 +15,7 @@ class Todo(models.Model):
   importance = models.CharField(
     choices=IMPORTANCE_CHOICE,
     verbose_name="重要度", max_length= 10,null=False)
-  
+
   def __str__(self):
         return self.text
 
@@ -23,4 +23,3 @@ class Todo(models.Model):
   def is_today(self):
         if date.today() == self.added_date:
             return True
-        return False
