@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% load static %}
+<h1>{{ today }}</h1>
+
+{% for todo in todos %}
+ {%if todo.is_today %}
+  <div class="row to_do_list my-2">
+    <div class="col-8"><h3>{{ todo.title }}&ensp;{{ todo.time }}分&ensp;
+      {% if todo.importance == "最重要" %}
+      <p class="bg-danger btn">{{todo.importance}}</p>
+      {% elif todo.importance == "重要" %}
+      <p class="bg-warning btn">{{todo.importance}}</p>
+      {% else %}
+      <p class="bg-primary btn">{{todo.importance}}</p>
+      {% endif %}
+      </h3></div>
+
+    <div class="col-4"><a class="btn btn-outline-primary" href='{% url "todo:detail" todo.pk %}'>詳細</a>
+      <a class="btn btn-outline-info" href='{% url "todo:edit" todo.id %}'>編集</a>
+      <a class="btn btn-outline-danger" href='{% url "todo:delete" todo.pk %}'>削除</a>
+    </div>
+  </div>
+ 
+{% endif %}
+{% endfor %}
+
+<div>
+<h2 id ="total_time">合計所要時間:{{totaltime}}分</h2>
+</div>
+
+<div class="add_form">
+  <h2>追加する</h2>
+<form action="./addTodo/" method="post">
+  {% csrf_token %}
+  <label>表題<input type ="text" name="title"></label>
+  <label>内容<input type ="text" name="text"></label>
+  <label>日付<input type ="date" name="added_date"></label>
+  <label>所要時間<input type ="number" name="time">分</label>
+  <select name="importance">
+    <option value="最重要">最重要</option>
+    <option value="重要">重要</option>
+    <option value="最重要">急ぎでない</option>
+  </select>
+  <input type ="submit" value="add">
+</div>
+
+
+{% endblock %}
+  
