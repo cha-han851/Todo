@@ -2,6 +2,7 @@
 
 PythonとDjangoの学習を始めたので練習としてTo do listアプリを制作いたしました。
 
+URL:http://py456.pythonanywhere.com/todo/
 
 
 
